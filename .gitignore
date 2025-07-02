@@ -1,0 +1,17 @@
+# Dependências do Node.js (serão instaladas dentro do contêiner)
+/blog-api/node_modules
+node_modules/
+
+# Logs
+npm-debug.log
+*.log
+
+# Arquivos de ambiente (nunca envie senhas ou chaves de API!)
+.env
+
+# Dados do Docker Volume (se estivesse mapeado localmente)
+mongo-data/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db

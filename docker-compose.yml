@@ -1,0 +1,24 @@
+
+
+services:
+  blog-api:
+    build: ./blog-api  # <-- MUDANÇA CRUCIAL! Agora ele sabe que precisa entrar na pasta 'blog-api' para encontrar o Dockerfile.
+    ports:
+      - "3000:3000"
+    volumes:
+       - ./blog-api:/app # Opcional, mas ótimo para desenvolvimento. Sincroniza seus arquivos locais com o contêiner.
+       - /app/node_modules # Impede que a pasta node_modules local sobrescreva a do contêiner.
+    environment:
+      - MONGO_URI=mongodb://blog-mongo:27017/blogdb
+    depends_on:
+      - blog-mongo
+
+  blog-mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
